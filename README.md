@@ -191,20 +191,50 @@ Use the same directory as your `instance_data_dir`. Set `caption_strategy: textf
 
 ## Requirements
 
-- **ComfyUI** (SDXL)
-- **comfyui-florence2** — for auto-captioning via `Florence2Run`
-- **ComfyUI IPAdapter Plus** — for face/style consistency in character and outfit workflows
-- No additional Python packages — all wildcard logic is self-contained in `wildcards.py`
+### Custom nodes (required for example workflows)
+
+| Package | Source | Used for |
+|---------|--------|----------|
+| **ComfyUI IPAdapter Plus** | [cubiq/ComfyUI_IPAdapter_plus](https://github.com/cubiq/ComfyUI_IPAdapter_plus) | Face/style consistency |
+| **comfyui-florence2** | [kilic-ai/comfyui-florence2](https://github.com/kilic-ai/comfyui-florence2) | Auto-captioning (`Florence2Run`) |
+| **ComfyUI-Custom-Scripts** | [pythongosssss/ComfyUI-Custom-Scripts](https://github.com/pythongosssss/ComfyUI-Custom-Scripts) | `ShowText\|pysssss` caption preview |
+
+> `LoRADatasetConfig` and `LoRACaptionSaver` themselves have no extra Python dependencies — all wildcard logic is self-contained in `wildcards.py`.
+
+### Models
+
+| Model | Where to get |
+|-------|-------------|
+| `ip-adapter-plus_sdxl_vit-h.safetensors` | [h94/IP-Adapter on HuggingFace](https://huggingface.co/h94/IP-Adapter) → `sdxl_models/` |
+| `ip-adapter-plus-face_sdxl_vit-h.safetensors` | same repo |
+| `CLIP-ViT-H-14-laion2B-s32B-b79K.safetensors` | same repo → `models/image_encoder/` |
+| `Florence-2-base` | [microsoft/Florence-2-base on HuggingFace](https://huggingface.co/microsoft/Florence-2-base) — place in `models/LLM/Florence-2-base/` |
+| `bridgeToonsMix_v80.safetensors` | [CivitAI](https://civitai.com/models/168673) — place in `models/checkpoints/` |
 
 ---
 
 ## Installation
 
-### Manual (recommended)
+### One-command install (recommended)
+
+```bash
+bash <(curl -fsSL https://raw.githubusercontent.com/LordTaylor/comfyui-lora-dataset-tools/main/install.sh) /path/to/ComfyUI
+```
+
+Downloads all custom nodes + IPAdapter/CLIP Vision/Florence-2 models automatically. The bridgeToonsMix checkpoint must be downloaded manually from CivitAI.
+
+### Manual
 
 ```bash
 cd ComfyUI/custom_nodes
+
+# 1. This package
 git clone https://github.com/LordTaylor/comfyui-lora-dataset-tools.git
+
+# 2. Required extensions
+git clone https://github.com/cubiq/ComfyUI_IPAdapter_plus.git
+git clone https://github.com/kilic-ai/comfyui-florence2.git
+git clone https://github.com/pythongosssss/ComfyUI-Custom-Scripts.git
 ```
 
 Restart ComfyUI. The two nodes appear under the **LoRA Dataset Tools** category.
