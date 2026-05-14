@@ -1,18 +1,27 @@
 {
   "1": {
     "class_type": "CheckpointLoaderSimple",
-    "inputs": { "ckpt_name": "Toon/bridgeToonsMix_v80.safetensors" },
-    "_meta": { "title": "🔷 Checkpoint — bridgeToonsMix_v80" },
-    "color": "#3a1a1a", "bgcolor": "#3a1a1a"
+    "inputs": {
+      "ckpt_name": "Toon/bridgeToonsMix_v80.safetensors"
+    },
+    "_meta": {
+      "title": "🔷 Checkpoint — bridgeToonsMix_v80"
+    },
+    "color": "#3a1a1a",
+    "bgcolor": "#2a1010"
   },
-
   "2": {
     "class_type": "LoadImage",
-    "inputs": { "image": "face_reference.png", "upload": "image" },
-    "_meta": { "title": "📷 TWARZ — wgraj swój obraz referencyjny twarzy" },
-    "color": "#1a3a5a", "bgcolor": "#1a3a5a"
+    "inputs": {
+      "image": "face_reference.png",
+      "upload": "image"
+    },
+    "_meta": {
+      "title": "📷 EDYTUJ: wgraj zdjęcie twarzy referencyjnej"
+    },
+    "color": "#1a3d5e",
+    "bgcolor": "#0f2840"
   },
-
   "5": {
     "class_type": "LoRADatasetConfig",
     "inputs": {
@@ -23,118 +32,250 @@
       "seed": 0,
       "control_after_generate": "randomize"
     },
-    "_meta": { "title": "🎛️ EDYTUJ TUTAJ — trigger / opis / output_name / typ" },
-    "color": "#1a4a5a", "bgcolor": "#1a4a5a"
+    "_meta": {
+      "title": "🎛️ EDYTUJ TUTAJ: trigger / opis / output_name / typ"
+    },
+    "color": "#0d6060",
+    "bgcolor": "#083535"
   },
-
   "10": {
     "class_type": "PrepImageForClipVision",
     "inputs": {
-      "image": ["2", 0],
+      "image": [
+        "2",
+        0
+      ],
       "interpolation": "LANCZOS",
       "crop_position": "center",
       "sharpening": 0.0
     },
-    "_meta": { "title": "🟣 PrepImage dla CLIP Vision" },
-    "color": "#3a1a5a", "bgcolor": "#3a1a5a"
+    "_meta": {
+      "title": "🟣 PrepImage dla CLIP Vision"
+    },
+    "color": "#4d1a70",
+    "bgcolor": "#350f50"
   },
   "11": {
     "class_type": "IPAdapterUnifiedLoader",
-    "inputs": { "model": ["1", 0], "preset": "PLUS (high strength)" },
-    "_meta": { "title": "🟣 IPA Loader — PLUS high strength" },
-    "color": "#3a1a5a", "bgcolor": "#3a1a5a"
+    "inputs": {
+      "model": [
+        "1",
+        0
+      ],
+      "preset": "PLUS (high strength)"
+    },
+    "_meta": {
+      "title": "🟣 IPA Loader — PLUS high strength"
+    },
+    "color": "#4d1a70",
+    "bgcolor": "#350f50"
   },
   "12": {
     "class_type": "IPAdapterAdvanced",
     "inputs": {
-      "model": ["11", 0], "ipadapter": ["11", 1], "image": ["10", 0],
-      "weight": 1.0, "weight_type": "linear", "combine_embeds": "concat",
-      "start_at": 0.0, "end_at": 0.65, "embeds_scaling": "V only"
+      "model": [
+        "11",
+        0
+      ],
+      "ipadapter": [
+        "11",
+        1
+      ],
+      "image": [
+        "10",
+        0
+      ],
+      "weight": 1.0,
+      "weight_type": "linear",
+      "combine_embeds": "concat",
+      "start_at": 0.0,
+      "end_at": 0.65,
+      "embeds_scaling": "V only"
     },
-    "_meta": { "title": "🟣 IPA PLUS — ciało/styl w=1.0 end=0.65" },
-    "color": "#3a1a5a", "bgcolor": "#3a1a5a"
+    "_meta": {
+      "title": "🟣 IPA PLUS — ciało/styl w=1.0 end=0.65"
+    },
+    "color": "#4d1a70",
+    "bgcolor": "#350f50"
   },
   "13": {
     "class_type": "IPAdapterUnifiedLoader",
-    "inputs": { "model": ["12", 0], "preset": "PLUS FACE (portraits)" },
-    "_meta": { "title": "🟣 IPA Loader — PLUS FACE portraits" },
-    "color": "#3a1a5a", "bgcolor": "#3a1a5a"
+    "inputs": {
+      "model": [
+        "12",
+        0
+      ],
+      "preset": "PLUS FACE (portraits)"
+    },
+    "_meta": {
+      "title": "🟣 IPA Loader — PLUS FACE portraits"
+    },
+    "color": "#4d1a70",
+    "bgcolor": "#350f50"
   },
   "14": {
     "class_type": "IPAdapterAdvanced",
     "inputs": {
-      "model": ["13", 0], "ipadapter": ["13", 1], "image": ["10", 0],
-      "weight": 1.0, "weight_type": "style transfer", "combine_embeds": "concat",
-      "start_at": 0.0, "end_at": 0.15, "embeds_scaling": "V only"
+      "model": [
+        "13",
+        0
+      ],
+      "ipadapter": [
+        "13",
+        1
+      ],
+      "image": [
+        "10",
+        0
+      ],
+      "weight": 1.0,
+      "weight_type": "style transfer",
+      "combine_embeds": "concat",
+      "start_at": 0.0,
+      "end_at": 0.15,
+      "embeds_scaling": "V only"
     },
-    "_meta": { "title": "🟣 IPA FACE — style transfer w=1.0 end=0.15" },
-    "color": "#3a1a5a", "bgcolor": "#3a1a5a"
+    "_meta": {
+      "title": "🟣 IPA FACE — style transfer w=1.0 end=0.15"
+    },
+    "color": "#4d1a70",
+    "bgcolor": "#350f50"
   },
   "15": {
     "class_type": "IPAdapterAdvanced",
     "inputs": {
-      "model": ["14", 0], "ipadapter": ["13", 1], "image": ["10", 0],
-      "weight": 0.7, "weight_type": "linear", "combine_embeds": "concat",
-      "start_at": 0.0, "end_at": 0.65, "embeds_scaling": "V only"
+      "model": [
+        "14",
+        0
+      ],
+      "ipadapter": [
+        "13",
+        1
+      ],
+      "image": [
+        "10",
+        0
+      ],
+      "weight": 0.7,
+      "weight_type": "linear",
+      "combine_embeds": "concat",
+      "start_at": 0.0,
+      "end_at": 0.65,
+      "embeds_scaling": "V only"
     },
-    "_meta": { "title": "🟣 IPA FACE — blend w=0.7 end=0.65" },
-    "color": "#3a1a5a", "bgcolor": "#3a1a5a"
+    "_meta": {
+      "title": "🟣 IPA FACE — blend w=0.7 end=0.65"
+    },
+    "color": "#4d1a70",
+    "bgcolor": "#350f50"
   },
-
   "20": {
     "class_type": "CLIPTextEncode",
     "inputs": {
-      "clip": ["1", 1],
-      "text": ["5", 2]
+      "clip": [
+        "1",
+        1
+      ],
+      "text": [
+        "5",
+        2
+      ]
     },
-    "_meta": { "title": "📝 Encode — base description (z LoRADatasetConfig)" },
-    "color": "#5a4a1a", "bgcolor": "#5a4a1a"
+    "_meta": {
+      "title": "📝 Encode — base description (z LoRADatasetConfig)"
+    },
+    "color": "#705a1a",
+    "bgcolor": "#50400f"
   },
   "21": {
     "class_type": "CLIPTextEncode",
     "inputs": {
-      "clip": ["1", 1],
-      "text": ["5", 1]
+      "clip": [
+        "1",
+        1
+      ],
+      "text": [
+        "5",
+        1
+      ]
     },
-    "_meta": { "title": "📝 Encode — varied_prompt (trigger + wildcards)" },
-    "color": "#5a4a1a", "bgcolor": "#5a4a1a"
+    "_meta": {
+      "title": "📝 Encode — varied_prompt (trigger + wildcards)"
+    },
+    "color": "#705a1a",
+    "bgcolor": "#50400f"
   },
   "23": {
     "class_type": "ConditioningConcat",
     "inputs": {
-      "conditioning_to": ["20", 0],
-      "conditioning_from": ["21", 0]
+      "conditioning_to": [
+        "20",
+        0
+      ],
+      "conditioning_from": [
+        "21",
+        0
+      ]
     },
-    "_meta": { "title": "🔗 BASE + WILDCARDS — połączone conditioning" },
-    "color": "#3a3a1a", "bgcolor": "#3a3a1a"
+    "_meta": {
+      "title": "🔗 BASE + WILDCARDS — połączone conditioning"
+    },
+    "color": "#505018",
+    "bgcolor": "#383810"
   },
   "24": {
     "class_type": "CLIPTextEncode",
     "inputs": {
-      "clip": ["1", 1],
+      "clip": [
+        "1",
+        1
+      ],
       "text": "blurry, low quality, multiple subjects, watermark, text, deformed, extra limbs, bad anatomy, cropped, out of frame, nsfw, ugly, duplicate, bad proportions"
     },
-    "_meta": { "title": "❌ NEGATIVE" },
-    "color": "#4a1a1a", "bgcolor": "#4a1a1a"
+    "_meta": {
+      "title": "❌ NEGATIVE"
+    },
+    "color": "#701a1a",
+    "bgcolor": "#500f0f"
   },
-
   "30": {
     "class_type": "EmptyLatentImage",
     "inputs": {
-      "width": ["5", 4],
-      "height": ["5", 5],
+      "width": [
+        "5",
+        4
+      ],
+      "height": [
+        "5",
+        5
+      ],
       "batch_size": 1
     },
-    "_meta": { "title": "⬜ EmptyLatent — rozmiar z LoRADatasetConfig (1024×1024)" },
-    "color": "#1a3a5a", "bgcolor": "#1a3a5a"
+    "_meta": {
+      "title": "⬜ EmptyLatent — rozmiar z LoRADatasetConfig (1024×1024)"
+    },
+    "color": "#1a3d70",
+    "bgcolor": "#0f2850"
   },
   "31": {
     "class_type": "KSampler",
     "inputs": {
-      "model": ["15", 0],
-      "positive": ["23", 0],
-      "negative": ["24", 0],
-      "latent_image": ["30", 0],
+      "model": [
+        "15",
+        0
+      ],
+      "positive": [
+        "23",
+        0
+      ],
+      "negative": [
+        "24",
+        0
+      ],
+      "latent_image": [
+        "30",
+        0
+      ],
       "seed": 42,
       "control_after_generate": "randomize",
       "steps": 20,
@@ -143,29 +284,56 @@
       "scheduler": "karras",
       "denoise": 1.0
     },
-    "_meta": { "title": "🟠 KSampler — 20 steps / cfg=4.5 / seed randomize" },
-    "color": "#1a5a1a", "bgcolor": "#1a5a1a"
+    "_meta": {
+      "title": "🟠 KSampler — 20 steps / cfg=4.5 / seed randomize"
+    },
+    "color": "#1a701a",
+    "bgcolor": "#0f500f"
   },
-
   "40": {
     "class_type": "VAEDecode",
-    "inputs": { "samples": ["31", 0], "vae": ["1", 2] },
-    "_meta": { "title": "🔸 VAEDecode" },
-    "color": "#2a2a3a", "bgcolor": "#2a2a3a"
+    "inputs": {
+      "samples": [
+        "31",
+        0
+      ],
+      "vae": [
+        "1",
+        2
+      ]
+    },
+    "_meta": {
+      "title": "🔸 VAEDecode"
+    },
+    "color": "#2a2a50",
+    "bgcolor": "#1a1a38"
   },
-
   "41": {
     "class_type": "LoRACaptionSaver",
     "inputs": {
-      "images": ["40", 0],
-      "caption": ["51", 2],
-      "filename_prefix": ["5", 3],
-      "trigger_word": ["5", 0]
+      "images": [
+        "40",
+        0
+      ],
+      "caption": [
+        "51",
+        2
+      ],
+      "filename_prefix": [
+        "5",
+        3
+      ],
+      "trigger_word": [
+        "5",
+        0
+      ]
     },
-    "_meta": { "title": "💾 LoRA Caption Saver — PNG + .txt atomicznie" },
-    "color": "#4a4a1a", "bgcolor": "#4a4a1a"
+    "_meta": {
+      "title": "💾 LoRA Caption Saver — PNG + .txt atomicznie"
+    },
+    "color": "#606018",
+    "bgcolor": "#404010"
   },
-
   "50": {
     "class_type": "Florence2ModelLoader",
     "inputs": {
@@ -173,14 +341,23 @@
       "precision": "fp32",
       "attention": "eager"
     },
-    "_meta": { "title": "🟡 Florence2 — model loader (fp32)" },
-    "color": "#2a1a3a", "bgcolor": "#2a1a3a"
+    "_meta": {
+      "title": "🟡 Florence2 — model loader (fp32)"
+    },
+    "color": "#3d1a5e",
+    "bgcolor": "#2a0f45"
   },
   "51": {
     "class_type": "Florence2Run",
     "inputs": {
-      "image": ["40", 0],
-      "florence2_model": ["50", 0],
+      "image": [
+        "40",
+        0
+      ],
+      "florence2_model": [
+        "50",
+        0
+      ],
       "text_input": "",
       "task": "detailed_caption",
       "fill_mask": true,
@@ -190,15 +367,35 @@
       "do_sample": false,
       "seed": 1
     },
-    "_meta": { "title": "🟡 Florence2Run — auto-caption" },
-    "color": "#2a1a3a", "bgcolor": "#2a1a3a"
+    "_meta": {
+      "title": "🟡 Florence2Run — auto-caption"
+    },
+    "color": "#3d1a5e",
+    "bgcolor": "#2a0f45"
   },
   "52": {
     "class_type": "ShowText|pysssss",
     "inputs": {
-      "text": ["41", 1]
+      "text": [
+        "41",
+        1
+      ]
     },
-    "_meta": { "title": "👁️ Podgląd caption (z trigger word)" },
-    "color": "#2a1a3a", "bgcolor": "#2a1a3a"
+    "_meta": {
+      "title": "👁️ Podgląd caption (z trigger word)"
+    },
+    "color": "#3d1a5e",
+    "bgcolor": "#2a0f45"
+  },
+  "100": {
+    "class_type": "PixaromaNote",
+    "inputs": {
+      "note_json": "{\"version\": 1, \"content\": \"📌 INSTRUKCJA — Character LoRA Dataset\\n\\nEdytuj TYLKO te 2 node'y:\\n─────────────────────────────────\\n1. 📷 LoadImage (node 2)\\n   Wgraj zdjęcie twarzy referencyjnej postaci\\n\\n2. 🎛️ LoRADatasetConfig (node 5)\\n   • trigger_word — unikalne słowo (np. kimi_char)\\n   • output_name  — nazwa folderu wyjściowego\\n   • description  — pełny opis postaci\\n   • dataset_type — character\\n   • seed         — ustaw kontrolkę na Randomize\\n\\nReszta działa automatycznie!\\n\\nWyniki zapisują się do:\\n  output/lora_dataset/{output_name}/\\n  ├─ {name}_00001_.png   ← wygenerowany obraz\\n  └─ {name}_00001_.txt   ← caption z trigger word\\n\\nKażdy Queue Prompt = 1 para PNG + TXT\", \"buttonColor\": \"#2a8f2a\", \"lineColor\": \"#2a8f2a\", \"width\": 440, \"height\": 380}"
+    },
+    "_meta": {
+      "title": "📌 INSTRUKCJA — przeczytaj zanim zaczniesz"
+    },
+    "color": "#1a3d1a",
+    "bgcolor": "#0f280f"
   }
 }
