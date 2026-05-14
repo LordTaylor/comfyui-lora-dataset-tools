@@ -27,7 +27,7 @@
       ],
       "properties": {},
       "widgets_values": [
-        "📌 WORKFLOW: Character LoRA Dataset\n\nEdytuj TYLKO te 2 node'y:\n──────────────────────────────\n1. 📷 LoadImage (niżej)\n   Wgraj zdjęcie twarzy referencyjnej\n\n2. 🎛️ LoRADatasetConfig (niżej)\n   • trigger_word — unikalne słowo\n   • output_name  — nazwa folderu\n   • description  — opis postaci\n   • dataset_type — character\n   • seed → ustaw na Randomize\n\n▶️ Kliknij Queue Prompt\n   Wyniki: output/lora_dataset/{name}/\n   {name}_00001_.png + {name}_00001_.txt"
+        "📌 WORKFLOW: Character LoRA Dataset\n\nEdytuj TYLKO te 2 node'y:\n──────────────────────────────\n1. 📷 LoadImage (niżej)\n   Wgraj zdjęcie twarzy referencyjnej\n\n2. 🎛️ LoRADatasetConfig (niżej)\n   • trigger_word — unikalne słowo\n   • output_name  — nazwa folderu\n   • description  — opis postaci\n   • dataset_type — character\n   • seed → ustaw na Randomize\n\n💡 UWAGA: Jeśli tło ma różowe/ciepłe zabarwienie\n   → zmniejsz wagi IPA PLUS i FACE (IPA node 12, 14, 15)\n   → lub ustaw wszystkie weights=0 jeśli opis jest szczegółowy\n\n▶️ Kliknij Queue Prompt\n   Wyniki: output/lora_dataset/{name}/\n   {name}_00001_.png + {name}_00001_.txt"
       ],
       "color": "#1a3d1a",
       "bgcolor": "#0f280f",
@@ -246,13 +246,13 @@
       "properties": {},
       "widgets_values": [
         "LANCZOS",
-        "center",
-        0.0
+        "top",
+        0.5
       ],
       "color": "#4d1a70",
       "bgcolor": "#350f50",
       "_meta": {
-        "title": "🟣 PrepImage dla CLIP Vision"
+        "title": "🟣 PrepImage — crop=top, sharp=0.5"
       }
     },
     {
@@ -347,17 +347,17 @@
       ],
       "properties": {},
       "widgets_values": [
-        0.5,
+        0.3,
         "linear",
-        "concat",
+        "average",
         0.0,
-        0.55,
-        "V only"
+        0.35,
+        "K+V w/ C penalty"
       ],
       "color": "#4d1a70",
       "bgcolor": "#350f50",
       "_meta": {
-        "title": "🟣 IPA PLUS — ciało/styl w=0.5 end=0.55"
+        "title": "🟣 IPA PLUS — styl w=0.3 end=0.35 | ↓ przy color bleed"
       }
     },
     {
@@ -453,17 +453,17 @@
       ],
       "properties": {},
       "widgets_values": [
-        0.75,
-        "style transfer",
-        "concat",
+        0.4,
+        "linear",
+        "average",
         0.0,
         0.15,
-        "V only"
+        "K+V w/ C penalty"
       ],
       "color": "#4d1a70",
       "bgcolor": "#350f50",
       "_meta": {
-        "title": "🟣 IPA FACE — style transfer w=0.75 end=0.15"
+        "title": "🟣 IPA FACE — identity w=0.4 end=0.15 | ↓ przy color bleed"
       }
     },
     {
@@ -509,17 +509,17 @@
       ],
       "properties": {},
       "widgets_values": [
-        0.45,
+        0.3,
         "linear",
-        "concat",
+        "average",
         0.0,
-        0.5,
-        "V only"
+        0.35,
+        "K+V w/ C penalty"
       ],
       "color": "#4d1a70",
       "bgcolor": "#350f50",
       "_meta": {
-        "title": "🟣 IPA FACE — blend w=0.45 end=0.50"
+        "title": "🟣 IPA FACE blend — w=0.3 end=0.35 | ↓ przy color bleed"
       }
     },
     {
@@ -687,12 +687,12 @@
       ],
       "properties": {},
       "widgets_values": [
-        "blurry, low quality, multiple subjects, watermark, text, deformed, extra limbs, bad anatomy, cropped, out of frame, nsfw, ugly, duplicate, bad proportions"
+        "blurry, low quality, multiple subjects, watermark, text, deformed, extra limbs, bad anatomy, cropped, out of frame, nsfw, ugly, duplicate, bad proportions, plain background, solid color background, pink background, monochrome background, flat color background"
       ],
       "color": "#701a1a",
       "bgcolor": "#500f0f",
       "_meta": {
-        "title": "❌ NEGATIVE"
+        "title": "❌ NEGATIVE + brak jednolitego tła"
       }
     },
     {
