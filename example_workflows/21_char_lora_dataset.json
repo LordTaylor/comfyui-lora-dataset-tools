@@ -85,15 +85,15 @@
         "10",
         0
       ],
-      "weight": 1.0,
+      "weight": 0.5,
       "weight_type": "linear",
       "combine_embeds": "concat",
       "start_at": 0.0,
-      "end_at": 0.65,
+      "end_at": 0.55,
       "embeds_scaling": "V only"
     },
     "_meta": {
-      "title": "🟣 IPA PLUS — ciało/styl w=1.0 end=0.65"
+      "title": "🟣 IPA PLUS — ciało/styl w=0.5 end=0.55"
     },
     "color": "#4d1a70",
     "bgcolor": "#350f50"
@@ -128,7 +128,7 @@
         "10",
         0
       ],
-      "weight": 1.0,
+      "weight": 0.75,
       "weight_type": "style transfer",
       "combine_embeds": "concat",
       "start_at": 0.0,
@@ -136,7 +136,7 @@
       "embeds_scaling": "V only"
     },
     "_meta": {
-      "title": "🟣 IPA FACE — style transfer w=1.0 end=0.15"
+      "title": "🟣 IPA FACE — style transfer w=0.75 end=0.15"
     },
     "color": "#4d1a70",
     "bgcolor": "#350f50"
@@ -156,15 +156,15 @@
         "10",
         0
       ],
-      "weight": 0.7,
+      "weight": 0.45,
       "weight_type": "linear",
       "combine_embeds": "concat",
       "start_at": 0.0,
-      "end_at": 0.65,
+      "end_at": 0.50,
       "embeds_scaling": "V only"
     },
     "_meta": {
-      "title": "🟣 IPA FACE — blend w=0.7 end=0.65"
+      "title": "🟣 IPA FACE — blend w=0.45 end=0.50"
     },
     "color": "#4d1a70",
     "bgcolor": "#350f50"
@@ -278,14 +278,14 @@
       ],
       "seed": 42,
       "control_after_generate": "randomize",
-      "steps": 20,
-      "cfg": 4.5,
+      "steps": 25,
+      "cfg": 3.5,
       "sampler_name": "dpmpp_2s_ancestral",
       "scheduler": "karras",
       "denoise": 1.0
     },
     "_meta": {
-      "title": "🟠 KSampler — 20 steps / cfg=4.5 / seed randomize"
+      "title": "🟠 KSampler — 25 steps / cfg=3.5 / seed randomize"
     },
     "color": "#1a701a",
     "bgcolor": "#0f500f"
