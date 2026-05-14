@@ -1,330 +1,1158 @@
 {
-  "1": {
-    "class_type": "CheckpointLoaderSimple",
-    "inputs": {
-      "ckpt_name": "Toon/bridgeToonsMix_v80.safetensors"
-    },
-    "_meta": {
-      "title": "🔷 Checkpoint — bridgeToonsMix_v80"
-    },
-    "color": "#3a1a1a",
-    "bgcolor": "#2a1010"
-  },
-  "2": {
-    "class_type": "LoadImage",
-    "inputs": {
-      "image": "location_reference.png",
-      "upload": "image"
-    },
-    "_meta": {
-      "title": "📷 EDYTUJ: wgraj zdjęcie miejsca lub przedmiotu"
-    },
-    "color": "#1a3d5e",
-    "bgcolor": "#0f2840"
-  },
-  "5": {
-    "class_type": "LoRADatasetConfig",
-    "inputs": {
-      "trigger_word": "location_trigger",
-      "output_name": "location_trigger",
-      "description": "masterpiece, best quality, bridge toons style, cel-shaded, flat colors, detailed scenery, no people",
-      "dataset_type": "location",
-      "seed": 0,
-      "control_after_generate": "randomize"
-    },
-    "_meta": {
-      "title": "🎛️ EDYTUJ TUTAJ: trigger / opis / output_name / typ (location/object)"
-    },
-    "color": "#0d6060",
-    "bgcolor": "#083535"
-  },
-  "10": {
-    "class_type": "PrepImageForClipVision",
-    "inputs": {
-      "image": [
-        "2",
-        0
+  "last_node_id": 100,
+  "last_link_id": 27,
+  "nodes": [
+    {
+      "id": 100,
+      "type": "PrimitiveStringMultiline",
+      "pos": [
+        30,
+        20
       ],
-      "interpolation": "LANCZOS",
-      "crop_position": "center",
-      "sharpening": 0.0
-    },
-    "_meta": {
-      "title": "🟣 PrepImage dla CLIP Vision"
-    },
-    "color": "#4d1a70",
-    "bgcolor": "#350f50"
-  },
-  "11": {
-    "class_type": "IPAdapterUnifiedLoader",
-    "inputs": {
-      "model": [
-        "1",
-        0
+      "size": {
+        "0": 390,
+        "1": 280
+      },
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "STRING",
+          "type": "STRING",
+          "links": [],
+          "slot_index": 0
+        }
       ],
-      "preset": "PLUS (high strength)"
-    },
-    "_meta": {
-      "title": "🟣 IPA Loader — PLUS high strength"
-    },
-    "color": "#4d1a70",
-    "bgcolor": "#350f50"
-  },
-  "12": {
-    "class_type": "IPAdapterAdvanced",
-    "inputs": {
-      "model": [
-        "11",
-        0
+      "properties": {},
+      "widgets_values": [
+        "📌 WORKFLOW: Location / Object LoRA Dataset\n\nEdytuj TYLKO te 2 node'y:\n──────────────────────────\n1. 📷 LoadImage (niżej)\n   Wgraj zdjęcie referencyjne lokacji lub obiektu\n\n2. 🎛️ LoRADatasetConfig (niżej)\n   • trigger_word — unikalne słowo\n   • output_name  — nazwa folderu\n   • description  — opis miejsca lub obiektu\n   • dataset_type — location LUB object\n     (location → 1216×832, object → 1024×1024)\n   • seed → ustaw na Randomize\n\n▶️ Kliknij Queue Prompt\n   Wyniki: output/lora_dataset/{name}/\n   {name}_00001_.png + {name}_00001_.txt"
       ],
-      "ipadapter": [
-        "11",
+      "color": "#1a3d1a",
+      "bgcolor": "#0f280f",
+      "_meta": {
+        "title": "📌 INSTRUKCJA — przeczytaj przed użyciem"
+      }
+    },
+    {
+      "id": 2,
+      "type": "LoadImage",
+      "pos": [
+        30,
+        316
+      ],
+      "size": {
+        "0": 315,
+        "1": 314
+      },
+      "flags": {},
+      "order": 1,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            6
+          ],
+          "slot_index": 0
+        },
+        {
+          "name": "MASK",
+          "type": "MASK",
+          "links": [],
+          "slot_index": 1
+        }
+      ],
+      "properties": {},
+      "widgets_values": [
+        "location_reference.png",
+        "image"
+      ],
+      "color": "#0d6060",
+      "bgcolor": "#083535",
+      "_meta": {
+        "title": "📷 1. EDYTUJ: wgraj zdjęcie referencyjne"
+      }
+    },
+    {
+      "id": 5,
+      "type": "LoRADatasetConfig",
+      "pos": [
+        30,
+        650
+      ],
+      "size": {
+        "0": 390,
+        "1": 330
+      },
+      "flags": {},
+      "order": 2,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "trigger",
+          "type": "STRING",
+          "links": [
+            7
+          ],
+          "slot_index": 0
+        },
+        {
+          "name": "varied_prompt",
+          "type": "STRING",
+          "links": [
+            8
+          ],
+          "slot_index": 1
+        },
+        {
+          "name": "base_description",
+          "type": "STRING",
+          "links": [
+            9
+          ],
+          "slot_index": 2
+        },
+        {
+          "name": "output_prefix",
+          "type": "STRING",
+          "links": [
+            10
+          ],
+          "slot_index": 3
+        },
+        {
+          "name": "latent_width",
+          "type": "INT",
+          "links": [
+            11
+          ],
+          "slot_index": 4
+        },
+        {
+          "name": "latent_height",
+          "type": "INT",
+          "links": [
+            12
+          ],
+          "slot_index": 5
+        }
+      ],
+      "properties": {},
+      "widgets_values": [
+        "location_trigger",
+        "my_location",
+        "masterpiece, best quality, [OPISZ LOKACJE: np. ancient forest clearing, lush green trees, stone path, sunlight through leaves], detailed environment, no people",
+        "location",
+        0,
+        "randomize"
+      ],
+      "color": "#0d6060",
+      "bgcolor": "#083535",
+      "_meta": {
+        "title": "🎛️ 2. EDYTUJ: trigger / opis / output_name / typ"
+      }
+    },
+    {
+      "id": 1,
+      "type": "CheckpointLoaderSimple",
+      "pos": [
+        450,
+        20
+      ],
+      "size": {
+        "0": 315,
+        "1": 58
+      },
+      "flags": {},
+      "order": 3,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "MODEL",
+          "type": "MODEL",
+          "links": [
+            1
+          ],
+          "slot_index": 0
+        },
+        {
+          "name": "CLIP",
+          "type": "CLIP",
+          "links": [
+            2,
+            3,
+            4
+          ],
+          "slot_index": 1
+        },
+        {
+          "name": "VAE",
+          "type": "VAE",
+          "links": [
+            5
+          ],
+          "slot_index": 2
+        }
+      ],
+      "properties": {},
+      "widgets_values": [
+        "Toon/bridgeToonsMix_v80.safetensors"
+      ],
+      "color": "#3a1a1a",
+      "bgcolor": "#2a1010",
+      "_meta": {
+        "title": "🔷 Checkpoint — bridgeToonsMix_v80"
+      }
+    },
+    {
+      "id": 10,
+      "type": "PrepImageForClipVision",
+      "pos": [
+        450,
+        96
+      ],
+      "size": {
+        "0": 315,
+        "1": 130
+      },
+      "flags": {},
+      "order": 4,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 6
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            13
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {},
+      "widgets_values": [
+        "LANCZOS",
+        "center",
+        0.0
+      ],
+      "color": "#4d1a70",
+      "bgcolor": "#350f50",
+      "_meta": {
+        "title": "🟣 PrepImage dla CLIP Vision"
+      }
+    },
+    {
+      "id": 11,
+      "type": "IPAdapterUnifiedLoader",
+      "pos": [
+        450,
+        244
+      ],
+      "size": {
+        "0": 315,
+        "1": 72
+      },
+      "flags": {},
+      "order": 5,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": 1
+        }
+      ],
+      "outputs": [
+        {
+          "name": "MODEL",
+          "type": "MODEL",
+          "links": [
+            14
+          ],
+          "slot_index": 0
+        },
+        {
+          "name": "ipadapter",
+          "type": "IPADAPTER",
+          "links": [
+            15
+          ],
+          "slot_index": 1
+        }
+      ],
+      "properties": {},
+      "widgets_values": [
+        "PLUS (high strength)"
+      ],
+      "color": "#4d1a70",
+      "bgcolor": "#350f50",
+      "_meta": {
+        "title": "🟣 IPA Loader — PLUS high strength"
+      }
+    },
+    {
+      "id": 12,
+      "type": "IPAdapterAdvanced",
+      "pos": [
+        450,
+        334
+      ],
+      "size": {
+        "0": 315,
+        "1": 310
+      },
+      "flags": {},
+      "order": 6,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": 14
+        },
+        {
+          "name": "ipadapter",
+          "type": "IPADAPTER",
+          "link": 15
+        },
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 13
+        }
+      ],
+      "outputs": [
+        {
+          "name": "MODEL",
+          "type": "MODEL",
+          "links": [
+            16
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {},
+      "widgets_values": [
+        0.6,
+        "linear",
+        "concat",
+        0.0,
+        0.6,
+        "V only"
+      ],
+      "color": "#4d1a70",
+      "bgcolor": "#350f50",
+      "_meta": {
+        "title": "🟣 IPA PLUS — styl lokacji w=0.6 end=0.6"
+      }
+    },
+    {
+      "id": 20,
+      "type": "CLIPTextEncode",
+      "pos": [
+        820,
+        20
+      ],
+      "size": {
+        "0": 315,
+        "1": 100
+      },
+      "flags": {},
+      "order": 7,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "text",
+          "type": "STRING",
+          "link": 9
+        },
+        {
+          "name": "clip",
+          "type": "CLIP",
+          "link": 2
+        }
+      ],
+      "outputs": [
+        {
+          "name": "CONDITIONING",
+          "type": "CONDITIONING",
+          "links": [
+            17
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {},
+      "widgets_values": [],
+      "color": "#705a1a",
+      "bgcolor": "#50400f",
+      "_meta": {
+        "title": "📝 Encode — base_description"
+      }
+    },
+    {
+      "id": 21,
+      "type": "CLIPTextEncode",
+      "pos": [
+        820,
+        138
+      ],
+      "size": {
+        "0": 315,
+        "1": 100
+      },
+      "flags": {},
+      "order": 8,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "text",
+          "type": "STRING",
+          "link": 8
+        },
+        {
+          "name": "clip",
+          "type": "CLIP",
+          "link": 3
+        }
+      ],
+      "outputs": [
+        {
+          "name": "CONDITIONING",
+          "type": "CONDITIONING",
+          "links": [
+            18
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {},
+      "widgets_values": [],
+      "color": "#705a1a",
+      "bgcolor": "#50400f",
+      "_meta": {
+        "title": "📝 Encode — varied_prompt"
+      }
+    },
+    {
+      "id": 23,
+      "type": "ConditioningConcat",
+      "pos": [
+        820,
+        256
+      ],
+      "size": {
+        "0": 315,
+        "1": 70
+      },
+      "flags": {},
+      "order": 9,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "conditioning_to",
+          "type": "CONDITIONING",
+          "link": 17
+        },
+        {
+          "name": "conditioning_from",
+          "type": "CONDITIONING",
+          "link": 18
+        }
+      ],
+      "outputs": [
+        {
+          "name": "CONDITIONING",
+          "type": "CONDITIONING",
+          "links": [
+            19
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {},
+      "widgets_values": [],
+      "color": "#705a1a",
+      "bgcolor": "#50400f",
+      "_meta": {
+        "title": "🔗 BASE + WILDCARDS — połączone conditioning"
+      }
+    },
+    {
+      "id": 24,
+      "type": "CLIPTextEncode",
+      "pos": [
+        820,
+        344
+      ],
+      "size": {
+        "0": 315,
+        "1": 100
+      },
+      "flags": {},
+      "order": 10,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "clip",
+          "type": "CLIP",
+          "link": 4
+        }
+      ],
+      "outputs": [
+        {
+          "name": "CONDITIONING",
+          "type": "CONDITIONING",
+          "links": [
+            20
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {},
+      "widgets_values": [
+        "blurry, low quality, watermark, text, deformed, bad quality, ugly, people, characters, persons, humans, nsfw, cropped, out of frame"
+      ],
+      "color": "#701a1a",
+      "bgcolor": "#500f0f",
+      "_meta": {
+        "title": "❌ NEGATIVE"
+      }
+    },
+    {
+      "id": 30,
+      "type": "EmptyLatentImage",
+      "pos": [
+        1180,
+        20
+      ],
+      "size": {
+        "0": 210,
+        "1": 106
+      },
+      "flags": {},
+      "order": 11,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "width",
+          "type": "INT",
+          "link": 11
+        },
+        {
+          "name": "height",
+          "type": "INT",
+          "link": 12
+        }
+      ],
+      "outputs": [
+        {
+          "name": "LATENT",
+          "type": "LATENT",
+          "links": [
+            21
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {},
+      "widgets_values": [
         1
       ],
-      "image": [
-        "10",
-        0
+      "color": "#1a3d70",
+      "bgcolor": "#0f2850",
+      "_meta": {
+        "title": "⬜ EmptyLatent — rozmiar z LoRADatasetConfig (1216×832 dla location)"
+      }
+    },
+    {
+      "id": 31,
+      "type": "KSampler",
+      "pos": [
+        1180,
+        144
       ],
-      "weight": 0.8,
-      "weight_type": "linear",
-      "combine_embeds": "concat",
-      "start_at": 0.0,
-      "end_at": 0.75,
-      "embeds_scaling": "V only"
+      "size": {
+        "0": 315,
+        "1": 262
+      },
+      "flags": {},
+      "order": 12,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": 16
+        },
+        {
+          "name": "positive",
+          "type": "CONDITIONING",
+          "link": 19
+        },
+        {
+          "name": "negative",
+          "type": "CONDITIONING",
+          "link": 20
+        },
+        {
+          "name": "latent_image",
+          "type": "LATENT",
+          "link": 21
+        }
+      ],
+      "outputs": [
+        {
+          "name": "LATENT",
+          "type": "LATENT",
+          "links": [
+            22
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {},
+      "widgets_values": [
+        42,
+        "randomize",
+        25,
+        3.5,
+        "dpmpp_2s_ancestral",
+        "karras",
+        1.0
+      ],
+      "color": "#1a701a",
+      "bgcolor": "#0f500f",
+      "_meta": {
+        "title": "🟠 KSampler — 25 steps / cfg=3.5 / seed randomize"
+      }
     },
-    "_meta": {
-      "title": "🟣 IPA PLUS — wizualny styl lokacji w=0.8 end=0.75"
+    {
+      "id": 40,
+      "type": "VAEDecode",
+      "pos": [
+        1550,
+        20
+      ],
+      "size": {
+        "0": 210,
+        "1": 46
+      },
+      "flags": {},
+      "order": 13,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "samples",
+          "type": "LATENT",
+          "link": 22
+        },
+        {
+          "name": "vae",
+          "type": "VAE",
+          "link": 5
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            23,
+            24
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {},
+      "widgets_values": [],
+      "color": "#2a2a50",
+      "bgcolor": "#1a1a38",
+      "_meta": {
+        "title": "🔸 VAEDecode"
+      }
     },
-    "color": "#4d1a70",
-    "bgcolor": "#350f50"
-  },
-  "20": {
-    "class_type": "CLIPTextEncode",
-    "inputs": {
-      "clip": [
-        "1",
+    {
+      "id": 50,
+      "type": "Florence2ModelLoader",
+      "pos": [
+        1550,
+        84
+      ],
+      "size": {
+        "0": 315,
+        "1": 130
+      },
+      "flags": {},
+      "order": 14,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "FLORENCE2",
+          "type": "FLORENCE2",
+          "links": [
+            26
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {},
+      "widgets_values": [
+        "Florence-2-base",
+        "fp16",
+        "eager"
+      ],
+      "color": "#3d1a5e",
+      "bgcolor": "#2a0f45",
+      "_meta": {
+        "title": "🟡 Florence2 — model loader (fp16)"
+      }
+    },
+    {
+      "id": 51,
+      "type": "Florence2Run",
+      "pos": [
+        1550,
+        232
+      ],
+      "size": {
+        "0": 315,
+        "1": 250
+      },
+      "flags": {},
+      "order": 15,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 24
+        },
+        {
+          "name": "florence2_model",
+          "type": "FLORENCE2",
+          "link": 26
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [],
+          "slot_index": 0
+        },
+        {
+          "name": "MASK",
+          "type": "MASK",
+          "links": [],
+          "slot_index": 1
+        },
+        {
+          "name": "STRING",
+          "type": "STRING",
+          "links": [
+            27
+          ],
+          "slot_index": 2
+        }
+      ],
+      "properties": {},
+      "widgets_values": [
+        "",
+        "more_detailed_caption",
+        true,
+        true,
+        1024,
+        3,
+        true,
         1
       ],
-      "text": [
-        "5",
-        2
-      ]
+      "color": "#3d1a5e",
+      "bgcolor": "#2a0f45",
+      "_meta": {
+        "title": "🟡 Florence2Run — more_detailed_caption"
+      }
     },
-    "_meta": {
-      "title": "📝 Encode — base description"
-    },
-    "color": "#705a1a",
-    "bgcolor": "#50400f"
-  },
-  "21": {
-    "class_type": "CLIPTextEncode",
-    "inputs": {
-      "clip": [
-        "1",
-        1
+    {
+      "id": 41,
+      "type": "LoRACaptionSaver",
+      "pos": [
+        1920,
+        20
       ],
-      "text": [
-        "5",
-        1
-      ]
-    },
-    "_meta": {
-      "title": "📝 Encode — varied_prompt (trigger + wildcards)"
-    },
-    "color": "#705a1a",
-    "bgcolor": "#50400f"
-  },
-  "23": {
-    "class_type": "ConditioningConcat",
-    "inputs": {
-      "conditioning_to": [
-        "20",
-        0
+      "size": {
+        "0": 315,
+        "1": 150
+      },
+      "flags": {},
+      "order": 16,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 23
+        },
+        {
+          "name": "caption",
+          "type": "STRING",
+          "link": 27
+        },
+        {
+          "name": "filename_prefix",
+          "type": "STRING",
+          "link": 10
+        },
+        {
+          "name": "trigger_word",
+          "type": "STRING",
+          "link": 7
+        }
       ],
-      "conditioning_from": [
-        "21",
-        0
-      ]
-    },
-    "_meta": {
-      "title": "🔗 BASE + WILDCARDS — połączone conditioning"
-    },
-    "color": "#505018",
-    "bgcolor": "#383810"
-  },
-  "24": {
-    "class_type": "CLIPTextEncode",
-    "inputs": {
-      "clip": [
-        "1",
-        1
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [],
+          "slot_index": 0
+        },
+        {
+          "name": "STRING",
+          "type": "STRING",
+          "links": [
+            25
+          ],
+          "slot_index": 1
+        }
       ],
-      "text": "blurry, low quality, people, persons, characters, humans, watermark, text, deformed, nsfw, anime character in foreground, person standing, 1girl, 1boy"
+      "properties": {},
+      "widgets_values": [],
+      "color": "#606018",
+      "bgcolor": "#404010",
+      "_meta": {
+        "title": "💾 LoRA Caption Saver — PNG + .txt atomicznie"
+      }
     },
-    "_meta": {
-      "title": "❌ NEGATIVE — brak postaci w scenie"
-    },
-    "color": "#701a1a",
-    "bgcolor": "#500f0f"
-  },
-  "30": {
-    "class_type": "EmptyLatentImage",
-    "inputs": {
-      "width": [
-        "5",
-        4
+    {
+      "id": 52,
+      "type": "ShowText|pysssss",
+      "pos": [
+        1920,
+        188
       ],
-      "height": [
-        "5",
-        5
+      "size": {
+        "0": 315,
+        "1": 100
+      },
+      "flags": {},
+      "order": 17,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "text",
+          "type": "STRING",
+          "link": 25
+        }
       ],
-      "batch_size": 1
-    },
-    "_meta": {
-      "title": "⬜ EmptyLatent — 1216×832 (location) lub 1024×1024 (object) z LoRADatasetConfig"
-    },
-    "color": "#1a3d70",
-    "bgcolor": "#0f2850"
-  },
-  "31": {
-    "class_type": "KSampler",
-    "inputs": {
-      "model": [
-        "12",
-        0
+      "outputs": [],
+      "properties": {},
+      "widgets_values": [],
+      "color": "#3d1a5e",
+      "bgcolor": "#2a0f45",
+      "_meta": {
+        "title": "👁️ Podgląd caption (z trigger word)"
+      }
+    }
+  ],
+  "links": [
+    [
+      1,
+      1,
+      0,
+      11,
+      0,
+      "MODEL"
+    ],
+    [
+      2,
+      1,
+      1,
+      20,
+      1,
+      "CLIP"
+    ],
+    [
+      3,
+      1,
+      1,
+      21,
+      1,
+      "CLIP"
+    ],
+    [
+      4,
+      1,
+      1,
+      24,
+      0,
+      "CLIP"
+    ],
+    [
+      5,
+      1,
+      2,
+      40,
+      1,
+      "VAE"
+    ],
+    [
+      6,
+      2,
+      0,
+      10,
+      0,
+      "IMAGE"
+    ],
+    [
+      7,
+      5,
+      0,
+      41,
+      3,
+      "STRING"
+    ],
+    [
+      8,
+      5,
+      1,
+      21,
+      0,
+      "STRING"
+    ],
+    [
+      9,
+      5,
+      2,
+      20,
+      0,
+      "STRING"
+    ],
+    [
+      10,
+      5,
+      3,
+      41,
+      2,
+      "STRING"
+    ],
+    [
+      11,
+      5,
+      4,
+      30,
+      0,
+      "INT"
+    ],
+    [
+      12,
+      5,
+      5,
+      30,
+      1,
+      "INT"
+    ],
+    [
+      13,
+      10,
+      0,
+      12,
+      2,
+      "IMAGE"
+    ],
+    [
+      14,
+      11,
+      0,
+      12,
+      0,
+      "MODEL"
+    ],
+    [
+      15,
+      11,
+      1,
+      12,
+      1,
+      "IPADAPTER"
+    ],
+    [
+      16,
+      12,
+      0,
+      31,
+      0,
+      "MODEL"
+    ],
+    [
+      17,
+      20,
+      0,
+      23,
+      0,
+      "CONDITIONING"
+    ],
+    [
+      18,
+      21,
+      0,
+      23,
+      1,
+      "CONDITIONING"
+    ],
+    [
+      19,
+      23,
+      0,
+      31,
+      1,
+      "CONDITIONING"
+    ],
+    [
+      20,
+      24,
+      0,
+      31,
+      2,
+      "CONDITIONING"
+    ],
+    [
+      21,
+      30,
+      0,
+      31,
+      3,
+      "LATENT"
+    ],
+    [
+      22,
+      31,
+      0,
+      40,
+      0,
+      "LATENT"
+    ],
+    [
+      23,
+      40,
+      0,
+      41,
+      0,
+      "IMAGE"
+    ],
+    [
+      24,
+      40,
+      0,
+      51,
+      0,
+      "IMAGE"
+    ],
+    [
+      25,
+      41,
+      1,
+      52,
+      0,
+      "STRING"
+    ],
+    [
+      26,
+      50,
+      0,
+      51,
+      1,
+      "FLORENCE2"
+    ],
+    [
+      27,
+      51,
+      2,
+      41,
+      1,
+      "STRING"
+    ]
+  ],
+  "groups": [
+    {
+      "title": "✏️ EDYTUJ TUTAJ",
+      "bounding": [
+        10,
+        0,
+        420,
+        1100
       ],
-      "positive": [
-        "23",
-        0
+      "color": "#0d3d3d",
+      "font_size": 24
+    },
+    {
+      "title": "🟣 IP ADAPTER",
+      "bounding": [
+        430,
+        0,
+        350,
+        800
       ],
-      "negative": [
-        "24",
-        0
+      "color": "#2d1040",
+      "font_size": 24
+    },
+    {
+      "title": "📝 PROMPT",
+      "bounding": [
+        800,
+        0,
+        360,
+        560
       ],
-      "latent_image": [
-        "30",
-        0
+      "color": "#40380a",
+      "font_size": 24
+    },
+    {
+      "title": "🎨 GENERACJA",
+      "bounding": [
+        1160,
+        0,
+        360,
+        520
       ],
-      "seed": 42,
-      "control_after_generate": "randomize",
-      "steps": 20,
-      "cfg": 4.5,
-      "sampler_name": "dpmpp_2s_ancestral",
-      "scheduler": "karras",
-      "denoise": 1.0
+      "color": "#0a2a10",
+      "font_size": 24
     },
-    "_meta": {
-      "title": "🟠 KSampler — 20 steps / cfg=4.5 / seed randomize"
-    },
-    "color": "#1a701a",
-    "bgcolor": "#0f500f"
-  },
-  "40": {
-    "class_type": "VAEDecode",
-    "inputs": {
-      "samples": [
-        "31",
-        0
+    {
+      "title": "🟡 CAPTION + ZAPIS",
+      "bounding": [
+        1530,
+        0,
+        460,
+        420
       ],
-      "vae": [
-        "1",
-        2
-      ]
-    },
-    "_meta": {
-      "title": "🔸 VAEDecode"
-    },
-    "color": "#2a2a50",
-    "bgcolor": "#1a1a38"
-  },
-  "41": {
-    "class_type": "LoRACaptionSaver",
-    "inputs": {
-      "images": [
-        "40",
-        0
-      ],
-      "caption": [
-        "51",
-        2
-      ],
-      "filename_prefix": [
-        "5",
-        3
-      ],
-      "trigger_word": [
-        "5",
-        0
-      ]
-    },
-    "_meta": {
-      "title": "💾 LoRA Caption Saver — PNG + .txt atomicznie"
-    },
-    "color": "#606018",
-    "bgcolor": "#404010"
-  },
-  "50": {
-    "class_type": "Florence2ModelLoader",
-    "inputs": {
-      "model": "Florence-2-base",
-      "precision": "fp16",
-      "attention": "eager"
-    },
-    "_meta": {
-      "title": "🟡 Florence2 — model loader (fp16)"
-    },
-    "color": "#3d1a5e",
-    "bgcolor": "#2a0f45"
-  },
-  "51": {
-    "class_type": "Florence2Run",
-    "inputs": {
-      "image": [
-        "40",
-        0
-      ],
-      "florence2_model": [
-        "50",
-        0
-      ],
-      "text_input": "",
-      "task": "more_detailed_caption",
-      "fill_mask": true,
-      "keep_model_loaded": true,
-      "max_new_tokens": 1024,
-      "num_beams": 3,
-      "do_sample": true,
-      "seed": 1
-    },
-    "_meta": {
-      "title": "🟡 Florence2Run — more_detailed_caption"
-    },
-    "color": "#3d1a5e",
-    "bgcolor": "#2a0f45"
-  },
-  "52": {
-    "class_type": "ShowText|pysssss",
-    "inputs": {
-      "text": [
-        "41",
-        1
-      ]
-    },
-    "_meta": {
-      "title": "👁️ Podgląd caption (z trigger word)"
-    },
-    "color": "#3d1a5e",
-    "bgcolor": "#2a0f45"
-  },
-  "100": {
-    "class_type": "PrimitiveStringMultiline",
-    "inputs": {
-      "value": "📌 INSTRUKCJA — Location / Object LoRA Dataset\n\nEdytuj TYLKO te 2 node'y:\n──────────────────────────────────────\n1. 📷 LoadImage (node 2)\n   → Wgraj zdjęcie miejsca lub przedmiotu\n\n2. 🎛️ LoRADatasetConfig (node 5)\n   • trigger_word  — unikalne słowo wyzwalające\n   • output_name   — nazwa folderu\n   • description   — opis lokacji lub obiektu\n   • dataset_type:\n     location → generuje w 1216×832 (krajobraz)\n     object   → generuje w 1024×1024 (izolowany)\n   • seed widget   → ustaw na Randomize\n\nℹ️ Negative prompt blokuje postacie w scenie.\n\n⚠️ Wymagane: IPAdapter Plus, Florence2, Custom-Scripts\n\nWyniki → output/lora_dataset/{output_name}/"
-    },
-    "_meta": {
-      "title": "📌 INSTRUKCJA — przeczytaj zanim zaczniesz"
-    },
-    "color": "#1a2a3d",
-    "bgcolor": "#0f1a28"
-  }
+      "color": "#2a0a40",
+      "font_size": 24
+    }
+  ],
+  "config": {},
+  "extra": {},
+  "version": 0.4
 }
