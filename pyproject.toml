@@ -1,0 +1,15 @@
+[project]
+name = "comfyui-lora-dataset-tools"
+version = "0.1.0"
+description = "ComfyUI custom nodes for streamlined LoRA dataset generation — atomic image+caption saving and built-in variety wildcards."
+license = { file = "LICENSE" }
+dependencies = []
+
+[project.urls]
+Repository = "https://github.com/LordTaylor/comfyui-lora-dataset-tools"
+Issues = "https://github.com/LordTaylor/comfyui-lora-dataset-tools/issues"
+
+[tool.comfy]
+PublisherId = "lordtaylor"
+DisplayName = "LoRA Dataset Tools"
+Icon = "https://raw.githubusercontent.com/LordTaylor/comfyui-lora-dataset-tools/main/assets/icon.png"
