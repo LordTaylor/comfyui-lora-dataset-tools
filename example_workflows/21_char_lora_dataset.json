@@ -338,11 +338,11 @@
     "class_type": "Florence2ModelLoader",
     "inputs": {
       "model": "Florence-2-base",
-      "precision": "fp32",
+      "precision": "fp16",
       "attention": "eager"
     },
     "_meta": {
-      "title": "🟡 Florence2 — model loader (fp32)"
+      "title": "🟡 Florence2 — model loader (fp16)"
     },
     "color": "#3d1a5e",
     "bgcolor": "#2a0f45"
@@ -359,16 +359,16 @@
         0
       ],
       "text_input": "",
-      "task": "detailed_caption",
+      "task": "more_detailed_caption",
       "fill_mask": true,
-      "keep_model_loaded": false,
-      "max_new_tokens": 512,
+      "keep_model_loaded": true,
+      "max_new_tokens": 1024,
       "num_beams": 3,
-      "do_sample": false,
+      "do_sample": true,
       "seed": 1
     },
     "_meta": {
-      "title": "🟡 Florence2Run — auto-caption"
+      "title": "🟡 Florence2Run — more_detailed_caption"
     },
     "color": "#3d1a5e",
     "bgcolor": "#2a0f45"
@@ -388,9 +388,9 @@
     "bgcolor": "#2a0f45"
   },
   "100": {
-    "class_type": "PixaromaNote",
+    "class_type": "PrimitiveStringMultiline",
     "inputs": {
-      "note_json": "{\"version\": 1, \"content\": \"📌 INSTRUKCJA — Character LoRA Dataset\\n\\nEdytuj TYLKO te 2 node'y:\\n─────────────────────────────────\\n1. 📷 LoadImage (node 2)\\n   Wgraj zdjęcie twarzy referencyjnej postaci\\n\\n2. 🎛️ LoRADatasetConfig (node 5)\\n   • trigger_word — unikalne słowo (np. kimi_char)\\n   • output_name  — nazwa folderu wyjściowego\\n   • description  — pełny opis postaci\\n   • dataset_type — character\\n   • seed         — ustaw kontrolkę na Randomize\\n\\nReszta działa automatycznie!\\n\\nWyniki zapisują się do:\\n  output/lora_dataset/{output_name}/\\n  ├─ {name}_00001_.png   ← wygenerowany obraz\\n  └─ {name}_00001_.txt   ← caption z trigger word\\n\\nKażdy Queue Prompt = 1 para PNG + TXT\", \"buttonColor\": \"#2a8f2a\", \"lineColor\": \"#2a8f2a\", \"width\": 440, \"height\": 380}"
+      "value": "📌 INSTRUKCJA — Character LoRA Dataset\n\nEdytuj TYLKO te 2 node'y:\n──────────────────────────────────────\n1. 📷 LoadImage (node 2)\n   → Wgraj zdjęcie twarzy referencyjnej\n\n2. 🎛️ LoRADatasetConfig (node 5)\n   • trigger_word — unikalne słowo (np. kimi_char)\n   • output_name  — nazwa folderu (np. kimi_char)\n   • description  — opis postaci: włosy, oczy, strój, styl\n   • dataset_type — character\n   • seed widget  → ustaw na Randomize\n\n⚠️ Wymagane rozszerzenia:\n   • cubiq/ComfyUI_IPAdapter_plus\n   • kilic-ai/comfyui-florence2\n   • pythongosssss/ComfyUI-Custom-Scripts (ShowText)\n\nWyniki → output/lora_dataset/{output_name}/\n  {name}_00001_.png + {name}_00001_.txt (caption)"
     },
     "_meta": {
       "title": "📌 INSTRUKCJA — przeczytaj zanim zaczniesz"

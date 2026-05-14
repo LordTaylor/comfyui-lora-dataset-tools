@@ -97,6 +97,13 @@ WILDCARDS: dict[str, list[str]] = {
         "turning around mid-motion",
         "leaning on a surface",
     ],
+    "outfit_background": [
+        "simple white background",
+        "plain neutral grey background",
+        "soft gradient background",
+        "minimal indoor room background",
+        "clean studio background",
+    ],
 
     # ── LOCATION / OBJECT ──────────────────────────────────────────────────
     "obj_angle": [
@@ -151,7 +158,7 @@ def get_variety_prompt(dataset_type: str, seed: int) -> str:
         parts = [
             pick("outfit_shot"),
             pick("outfit_activity"),
-            pick("location"),
+            pick("outfit_background"),
             pick("lighting"),
             "masterpiece, best quality",
         ]
@@ -171,6 +178,7 @@ def get_variety_prompt(dataset_type: str, seed: int) -> str:
             pick("atmosphere"),
             "isolated object",
             "detailed",
+            "white background, studio lighting",
         ]
 
     return ", ".join(parts)

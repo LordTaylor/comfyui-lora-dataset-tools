@@ -27,7 +27,7 @@
     "inputs": {
       "trigger_word": "outfit_trigger",
       "output_name": "outfit_trigger",
-      "description": "1girl, adult woman, bridge toons style, cel-shaded, flat colors, animated series character, wearing",
+      "description": "1girl, adult woman, bridge toons style, cel-shaded, flat colors, animated series character, [OPISZ STROJ: np. blue traveler cloak, brown belt, tall boots]",
       "dataset_type": "outfit",
       "seed": 0,
       "control_after_generate": "randomize"
@@ -317,14 +317,14 @@
     "bgcolor": "#2a0f45"
   },
   "100": {
-    "class_type": "PixaromaNote",
+    "class_type": "PrimitiveStringMultiline",
     "inputs": {
-      "note_json": "{\"version\": 1, \"content\": \"📌 INSTRUKCJA — Outfit LoRA Dataset\\n\\nEdytuj TYLKO te 2 node'y:\\n─────────────────────────────────\\n1. 📷 LoadImage (node 2)\\n   Wgraj zdjęcie referencyjne stroju\\n   (najlepiej pełna sylwetka lub detal ubrania)\\n\\n2. 🎛️ LoRADatasetConfig (node 5)\\n   • trigger_word — unikalne słowo dla stroju\\n   • output_name  — nazwa folderu wyjściowego\\n   • description  — opis stroju (kolory, krój, materiał)\\n   • dataset_type — outfit\\n   • seed         — ustaw kontrolkę na Randomize\\n\\nUwaga: IPAdapter tutaj uczy się STYLU stroju,\\nnie twarzy — użyj tylko jednego loadera (PLUS).\\n\\nWyniki: output/lora_dataset/{output_name}/\", \"buttonColor\": \"#8f8f2a\", \"lineColor\": \"#8f8f2a\", \"width\": 440, \"height\": 360}"
+      "value": "📌 INSTRUKCJA — Outfit LoRA Dataset\n\nEdytuj TYLKO te 2 node'y:\n──────────────────────────────────────\n1. 📷 LoadImage (node 2)\n   → Wgraj zdjęcie stroju (pełna sylwetka lub detal)\n\n2. 🎛️ LoRADatasetConfig (node 5)\n   • trigger_word — unikalne słowo (np. red_cloak_outfit)\n   • output_name  — nazwa folderu\n   • description  — opis stroju: kolory, krój, materiał\n     Przykład: blue traveler cloak, brown belt, tall boots\n   • dataset_type — outfit\n   • seed widget  → ustaw na Randomize\n\nℹ️ IPAdapter uczy się STYLU stroju (nie twarzy).\n   Jeden PLUS loader — wystarczający dla odzieży.\n\n⚠️ Wymagane: IPAdapter Plus, Florence2, Custom-Scripts\n\nWyniki → output/lora_dataset/{output_name}/"
     },
     "_meta": {
-      "title": "📌 INSTRUKCJA — Outfit LoRA"
+      "title": "📌 INSTRUKCJA — przeczytaj zanim zaczniesz"
     },
-    "color": "#1a3d1a",
-    "bgcolor": "#0f280f"
+    "color": "#3d3d1a",
+    "bgcolor": "#28280f"
   }
 }

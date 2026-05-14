@@ -317,14 +317,14 @@
     "bgcolor": "#2a0f45"
   },
   "100": {
-    "class_type": "PixaromaNote",
+    "class_type": "PrimitiveStringMultiline",
     "inputs": {
-      "note_json": "{\"version\": 1, \"content\": \"📌 INSTRUKCJA — Location/Object LoRA Dataset\\n\\nEdytuj TYLKO te 2 node'y:\\n─────────────────────────────────\\n1. 📷 LoadImage (node 2)\\n   Wgraj zdjęcie miejsca lub przedmiotu\\n\\n2. 🎛️ LoRADatasetConfig (node 5)\\n   • trigger_word  — unikalne słowo wyzwalające\\n   • output_name   — nazwa folderu\\n   • description   — opis lokacji lub obiektu\\n   • dataset_type  — location → 1216×832\\n                    object   → 1024×1024\\n   • seed          — ustaw kontrolkę na Randomize\\n\\nNegative prompt blokuje postacie w scenie.\\nIPAdapter uczy się ogólnego stylu wizualnego.\\n\\nWyniki: output/lora_dataset/{output_name}/\", \"buttonColor\": \"#2a5f8f\", \"lineColor\": \"#2a5f8f\", \"width\": 440, \"height\": 380}"
+      "value": "📌 INSTRUKCJA — Location / Object LoRA Dataset\n\nEdytuj TYLKO te 2 node'y:\n──────────────────────────────────────\n1. 📷 LoadImage (node 2)\n   → Wgraj zdjęcie miejsca lub przedmiotu\n\n2. 🎛️ LoRADatasetConfig (node 5)\n   • trigger_word  — unikalne słowo wyzwalające\n   • output_name   — nazwa folderu\n   • description   — opis lokacji lub obiektu\n   • dataset_type:\n     location → generuje w 1216×832 (krajobraz)\n     object   → generuje w 1024×1024 (izolowany)\n   • seed widget   → ustaw na Randomize\n\nℹ️ Negative prompt blokuje postacie w scenie.\n\n⚠️ Wymagane: IPAdapter Plus, Florence2, Custom-Scripts\n\nWyniki → output/lora_dataset/{output_name}/"
     },
     "_meta": {
-      "title": "📌 INSTRUKCJA — Location/Object LoRA"
+      "title": "📌 INSTRUKCJA — przeczytaj zanim zaczniesz"
     },
-    "color": "#1a3d1a",
-    "bgcolor": "#0f280f"
+    "color": "#1a2a3d",
+    "bgcolor": "#0f1a28"
   }
 }
