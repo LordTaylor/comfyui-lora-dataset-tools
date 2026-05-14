@@ -9,7 +9,8 @@ Two nodes for streamlined LoRA dataset generation:
 import os
 import json
 import numpy as np
-from PIL import Image, PngInfo
+from PIL import Image
+from PIL.PngImagePlugin import PngInfo
 
 import folder_paths
 from .wildcards import get_variety_prompt, get_latent_size
